@@ -13,7 +13,6 @@ public class FirstChallenge : MonoBehaviour
     [SerializeField] private Transform plus;
     [SerializeField] private TextMeshPro equals;
     [SerializeField, ColorUsage(true, true)] private Color correctColor;
-    [SerializeField, ColorUsage(true, true)] private Color incorrectColor;
     
     private IEnumerator Start()
     {
@@ -108,7 +107,7 @@ public class FirstChallenge : MonoBehaviour
                 lineJ.SetPositions(new[] {objI.position, objJ.position});
 
                 // check if it's correct
-                var isCorrect = (intI + intJ) != 2020;
+                var isCorrect = (intI + intJ) == 2020;
                 
                 if (isCorrect)
                 {
@@ -152,16 +151,18 @@ public class FirstChallenge : MonoBehaviour
         correctObjJ.DOColor(correctColor, 0.75f);
 
         // scale them up so we can see the numbers inside
-        correctObjI.transform.DOScale(Vector3.one * 20, 0.75f).SetEase(Ease.InOutQuint);
-        correctObjJ.transform.DOScale(Vector3.one * 20, 0.75f).SetEase(Ease.InOutQuint);
+        var parentI = correctObjI.transform.parent;
+        parentI.DOScale(Vector3.one * 20, 0.75f).SetEase(Ease.InOutQuint);
+        var parentJ = correctObjJ.transform.parent;
+        parentJ.DOScale(Vector3.one * 20, 0.75f).SetEase(Ease.InOutQuint);
         
         // move them into position 
-        correctObjI.transform.DOMove(new Vector3(-4, 2, 0), 0.75f).SetEase(Ease.InOutQuint);
-        correctObjJ.transform.DOMove(new Vector3(4, 2, 0), 0.75f).SetEase(Ease.InOutQuint);
+        parentI.DOMove(new Vector3(-4, 2, 0), 0.75f).SetEase(Ease.InOutQuint);
+        parentJ.DOMove(new Vector3(4, 2, 0), 0.75f).SetEase(Ease.InOutQuint);
         
         // remove them from the list 
-        objects.Remove(correctObjI.transform);
-        objects.Remove(correctObjJ.transform);
+        objects.Remove(parentI);
+        objects.Remove(parentJ);
         
         // loop through what's left and scale them down with DOTween
         foreach (var obj in objects)

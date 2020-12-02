@@ -12,6 +12,7 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/firstchallenge.txt" />
         <option value="$PROJECT_DIR$/Assets/FirstChallenge.cs" />
+        <option value="$PROJECT_DIR$/Assets/_Project/Day1/Scripts/FirstChallenge.cs" />
       </list>
     </option>
   </component>
@@ -60,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606841628820</updated>
-      <workItem from="1606841631708" duration="7320000" />
+      <workItem from="1606841631708" duration="7465000" />
     </task>
     <servers />
   </component>
